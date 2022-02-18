@@ -20,7 +20,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('pirmasKD');
 });
-
 Route::get('/start', function () {
     return view('pirmas',['i'=>'Tomas']);
 });
