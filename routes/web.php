@@ -12,10 +12,15 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+//Pirmas kd uzkomentuotas pagrindinis return publike
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+//Pakeiciame pagrindini i musu susikurta view
 Route::get('/', function () {
-    return view('welcome');
+    return view('pirmasKD');
 });
+
 Route::get('/start', function () {
     return view('pirmas',['i'=>'Tomas']);
 });
