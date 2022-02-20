@@ -81,47 +81,43 @@ Pateikti:
   
 {{-- PHP kodas --}}
 @php
-//Data su kuria norime dirbti (time() yra siandienos data)
-
-$date = strtotime('2022-02-18');
-$date = strtotime('2022-01-18');
-
-//Siandienos data Metai-menuo,diena
-$dateYMD = date('Y-m-d', $date);
-echo "dabartine data ".$dateYMD;
+//Pasirinkta data
+$date = new DateTime('2022-02-20');
+echo 'Pasirinkta data : '.$date->format('Y-m-d');
 echo '<br>';
 
 
 //Dabartiniai metai ir menuo
-$dateYM = date('Y-m', $date);
-echo "dabartiniai metai ir menuo ".$dateYM;
+$thisYearMonth = $date->format('Y-m');
+echo 'Dabartiniai metai ir menuo : '.$thisYearMonth;
 echo '<br>';
 
-//Dabartinio menesio pirma diena
-$dateDN = strtotime(date('Y-m-01'));
-echo 'Dabartinio menesio pirma diena = '. date('Y-m-01');
+//SIO MENESIO DIENU SKAICIUS
+$days = $date->format('t');
+echo 'Sio menesio dienu skaicius : '.$days;
 echo '<br>';
 
-//NUO KURIOS DIENOS PRASIDEDA SIS MENUO
-$dateDS = date('N',$dateDN);
-echo 'Nuo kurios savaites dienos prasideda sis menuo? '.$dateDS.' Tai yra '.date('l',$dateDN);
+//PIRMA MENESIO DIENA
+$firstMonthDay = $date->format('Y-m-01');
+
+//DABARTINIS MENESIS PRASIDEDA NUO SITOS DIENOS (imama pirma menesio diena):
+$dayNum = date_create($firstMonthDay)->format('N');
+echo 'Dabartinis menesis prasides nuo sitos dienos : '.$dayNum;
 echo '<br>';
 
-//KIEK DIENU SIS MENUO TURI
-$dateDE = date('t',$date);
-echo "kiek dienu sis menuo turi : ".$dateDE;
+//PRAEITAS MENUO
+$lastMonth = $date->modify('-1 month')->format('Y-m');
+echo 'Praeitas menuo : '.$lastMonth;
 echo '<br>';
 
-// ----PASKUTINIS MENUO----
-// Paskutinio menesio dienu skaicius
-$dateLMD = date("t", mktime(0,0,0, date("n") - 1));
-echo 'Paskutinio menesio dienu skaicius : '.$dateLMD;
+//PRAEITO MENESIO PASKUTINE DIENA
+$lastDayOfLastMonth = date("Y-m-t", strtotime($lastMonth));
+echo 'Praeito menesio paskutine diena : '.$lastDayOfLastMonth;
 echo '<br>';
 
-//paskutinio menesio dienu skaicius - sio menesio prasidedanti diena $dateDS
-$dateDLMTM = $dateLMD - $dateDS;
-echo '(Paskutinio menesio dienu skaicius) - (sio menesio prasidedanti diena norint uzpildyti kalendoriaus tuscias vietas) = '.$dateDLMTM;
-echo '<br>';
+//PASKUTINIO MENESIO DIENOS IR SIO MENESIO SAVAITES PRASIDEDANCIOS DIENOS SKIRTUMAS
+$daydiff = date_create($lastDayOfLastMonth)->modify('-'.$dayNum.' day')->modify('+2 day')->format('Y-m-d');
+echo 'PASKUTINIO MENESIO DIENOS IR SIO MENESIO SAVAITES PRASIDEDANCIOS DIENOS SKIRTUMAS : '.$daydiff;
 
 //skaiciuokle
 $skaiciuokle =0;
@@ -146,7 +142,7 @@ $dienuPav = [
     <div class="row">
         <table id="kalendorius" class="table table-striped mb-0">
             {{-- date isvedimas ant virsaus su caption --}}
-            <caption>@php echo $dateYM @endphp</caption>
+            <caption>@php echo $thisYearMonth @endphp</caption>
             <thead>
                 <tr>
                     {{-- isvedame savaites dienas --}}
@@ -161,34 +157,60 @@ $dienuPav = [
             <tbody>
                 <tr>
                 {{-- Spauzdiname praeito menesio dienas kad uzpilditume tuscias vietas kalendoriuje --}}
-                  @for($i = $dateDLMTM+1; $i <$dateLMD; $i++)
-                    @php
-                      echo '<td class="table-secondary border border-dark">'.$i.'</td>';
-                      $skaiciuokle++;
-                    @endphp
+                  @for($ii = date_create($daydiff)->format('d') ; $ii <= date_create($lastDayOfLastMonth)->format('d'); $ii++)
+                    
+                    @if($dayNum!=1)
+                        @php
+                            echo '<td class="table-secondary border border-dark">'.$ii.'</td>';
+                            $skaiciuokle++;
+                        @endphp
+
+                        @else
+                            @break
+                    @endif
+
+                      @if($skaiciuokle==7)
+                        @php
+                            echo '</tr>';
+                            echo '<tr>';
+                            $skaiciuokle=0;
+                        @endphp
+                      @endif 
                   @endfor
-                  @for($i2 = 1; $i2 <=$dateDE; $i2++)
+                  @for( $i = 1; $i <= $days; $i++)
                     @php
                     $skaiciuokle++;
                     @endphp
 
                     @if($skaiciuokle==6)
                       @php
-                        echo '<td class="border border-dark table-primary">'.$i2.'</td>';
+                        echo '<td class="border border-dark table-primary">'.$i.'</td>';
                       @endphp
                     @elseif($skaiciuokle==7)
                       @php
-                        echo '<td class="border border-dark table-primary">'.$i2.'</td>';
+                        echo '<td class="border border-dark table-primary">'.$i.'</td>';
                         echo '</tr>';
                         echo '<tr>';
                         $skaiciuokle=0;
                       @endphp
                     @else 
                         @php
-                         echo '<td class="border border-dark">'.$i2.'</td>';
+                         echo '<td class="border border-dark">'.$i.'</td>';
                         @endphp
                     @endif
                   @endfor
+                  @if($days==31 || $skaiciuokle != 7)
+                    @php
+                        $sk2=1;
+                    @endphp
+                    @while($skaiciuokle!=7)
+                        @php
+                        echo '<td class="table-dark border border-dark">'.$sk2.'</td>';
+                        $sk2++;
+                        $skaiciuokle++;
+                        @endphp
+                    @endwhile
+                  @endif
                 </tr>
             </tbody>
         </table>
