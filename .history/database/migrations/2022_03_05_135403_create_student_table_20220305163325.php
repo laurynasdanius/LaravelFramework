@@ -13,14 +13,20 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('dogs', function (Blueprint $table) {
+        Schema::create('students', function (Blueprint $table) {
             $table->id();
-            $table->string('dog_name');
-            $table->string('dog_breed');
+            $table->string('vardas');
+            $table->string('pavarde');
+            $table->string('tel_nr', 15);
+            $table->string('pastas')->unique();
+            $table->string('slaptazodis');
             $table->timestamps();
         });
     }
-
+    public function run()
+    {
+        User::factory()->count(50)->create();
+    }
     /**
      * Reverse the migrations.
      *
@@ -28,6 +34,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('dogs');
+        Schema::dropIfExists('students');
     }
 };
