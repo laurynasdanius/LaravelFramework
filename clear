@@ -1,0 +1,60 @@
+[33mcommit 4c8ffcaae62c042d19272e9bfa82c3e94d9e1a22[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m
+Author: Laurynas Danius <laurynas.danius1@gmail.com>
+Date:   Sat Mar 5 17:05:04 2022 +0200
+
+    added migrations(unifinished alter migration)
+
+[33mcommit 2f8d36c2dfeb99fb0a91426d8cc027cfcda9690b[m
+Author: Laurynas Danius <laurynas.danius1@gmail.com>
+Date:   Thu Mar 3 11:42:50 2022 +0200
+
+    finished calendar
+
+[33mcommit 961d58de41be6c1337de14f86f75512d823c5f96[m
+Author: Laurynas Danius <laurynas.danius1@gmail.com>
+Date:   Sun Feb 20 18:54:32 2022 +0200
+
+    PirmasKD Final version (no review yet)
+
+[33mcommit d75644cb6a8394124b1a2239386e4fc9e3f86968[m
+Author: Laurynas Danius <laurynas.danius1@gmail.com>
+Date:   Fri Feb 18 17:50:05 2022 +0200
+
+    pirmasKD v2 (ongoining)
+
+[33mcommit 6af0dc4df9468d43d1c9a0ba09e9c71498399399[m
+Author: Laurynas Danius <laurynas.danius1@gmail.com>
+Date:   Fri Feb 18 12:49:08 2022 +0200
+
+    kalendorius done v1
+
+[33mcommit c5cb5a86ea703db95675ffab4d6c8d7b397c1b17[m
+Merge: a741d79 c14c5d8
+Author: Laurynas Danius <laurynas.danius1@gmail.com>
+Date:   Thu Feb 17 12:41:51 2022 +0200
+
+    Merge branch 'main' of https://github.com/laurynasdanius/LaravelFramework
+
+[33mcommit a741d790d58327360d5cc560e53954571c80db35[m
+Author: Laurynas Danius <laurynas.danius1@gmail.com>
+Date:   Thu Feb 17 12:41:45 2022 +0200
+
+    Darbas paskaitoje pries ND(ongoing)
+
+[33mcommit c14c5d82a9b66543c81bd36064330f7ef3b976a7[m
+Author: Laurynas Danius <51074505+laurynasdanius@users.noreply.github.com>
+Date:   Thu Feb 17 12:22:42 2022 +0200
+
+    Update README.md
+
+[33mcommit 91c14156fb6bad239ad27462feeefd0113790873[m
+Author: Laurynas Danius <laurynas.danius1@gmail.com>
+Date:   Thu Feb 17 11:46:02 2022 +0200
+
+    Innit
+
+[33mcommit 3c15dc8490de06057c0871cd159c5ce6e18d743d[m
+Author: Laurynas Danius <laurynas.danius1@gmail.com>
+Date:   Thu Feb 17 11:45:27 2022 +0200
+
+    first commit
