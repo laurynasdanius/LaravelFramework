@@ -12,18 +12,13 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-//Pirmas kd uzkomentuotas pagrindinis return publike
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-//Pakeiciame pagrindini i musu susikurta view
+
 Route::get('/', function () {
-    return view('pirmasKD');
+    return view('welcome');
 });
-Route::get('/start', function () {
-    return view('pirmas',['i'=>'Tomas']);
-});
-Route::get('/klaida', function () {
-    return 'Kazkas ne taip';
-});
-Route::redirect('/klaida','delfi.lt');
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
+
+require __DIR__.'/auth.php';

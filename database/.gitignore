@@ -1,1 +1,7 @@
 *.sqlite*
+.history
+*.history*
+.clear
+/clear
+/history
+*.clear*
