@@ -13,15 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-    //     DB::table('users')
-    // ->updateOrInsert(
-    //     ['email' => 'john@example.com', 'name' => 'John'],
-    //     ['votes' => '2']
-    // );
-    //$deleted = DB::table('users')->delete();
-        Schema::table('students', function($table) {
-            $table->string('lytis');
-            $table->rename('vardas', 'vardas(pakeistas)');
+        Schema::table('students', function($table)  {
+            $table->string('titulas');
+            $table->renameColumn('vardas', 'vardas_pakeistas');
             $table->dropColumn('pavarde');
         });
     }
@@ -33,6 +27,11 @@ return new class extends Migration
      */
     public function down()
     {
-        //
+        Schema::table('students', function($table)  {
+            $table->dropColumn('titulas');
+            $table->renameColumn('vardas_pakeistas','vardas');
+            $table->dropColumn('vardas');
+            $table->string('pavarde');
+        });  
     }
 };

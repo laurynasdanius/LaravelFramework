@@ -17,11 +17,11 @@ class StudentFactory extends Factory
     public function definition()
     {
         return [
-            'vardas' => $this->faker->firstName(),
-            'pavarde' => $this->faker->lastName(),
+            'vardas_pakeistas' => $this->faker->firstName(),
             'tel_nr' => $this->faker->e164PhoneNumber(),
             'pastas' => $this->faker->safeEmail(),
             'slaptazodis' => $this->faker->regexify('[A-Z]{5}[0-4]{3}'),
+            'titulas'=> $this->faker->title()
         ];
     }
 }

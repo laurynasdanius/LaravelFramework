@@ -15,7 +15,9 @@ class BookController extends Controller
      */
     public function index()
     {
-        //
+        //visi laukai is tos duomenu bazes patalpinama i $books
+        $books = Book::all();
+        return view('books',['books' => $books]);
     }
 
     /**
