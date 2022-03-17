@@ -2,7 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BookController;
-
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\MailController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -25,4 +26,9 @@ Route::get('/dashboard', function () {
 //kvieciamas book controller
 Route::resource('/books',BookController::class);
 
+
+Route::resource('/products', ProductController::class);
+
+Route::get('mail', [MailController::class, 'plain_email']);
+Route::get('mail_html', [MailController::class, 'html_email']); 
 require __DIR__.'/auth.php';
