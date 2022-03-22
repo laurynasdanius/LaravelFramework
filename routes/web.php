@@ -18,7 +18,9 @@ use App\Http\Controllers\MailController;
 Route::get('/', function () {
     return view('welcome');
 });
-
+Route::get('/page1', function () {
+    return view('page1.app');
+});
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
