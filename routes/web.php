@@ -4,6 +4,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\MailController;
+use App\Http\Controllers\TasksController;
+use App\Http\Controllers\NoteController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -15,11 +18,11 @@ use App\Http\Controllers\MailController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('DI.pages.tasks');
+// });
 Route::get('/page1', function () {
-    return view('page1.app');
+    return view('page1.layouts.footer');
 });
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -34,3 +37,15 @@ Route::resource('/products', ProductController::class);
 Route::get('mail', [MailController::class, 'plain_email']);
 Route::get('mail_html', [MailController::class, 'html_email']); 
 require __DIR__.'/auth.php';
+
+//duomenu isvedimas
+// Route::get('/tasks', function()
+// {
+//    return view('DI.pages.tasks');
+// });
+
+//visi routes su tasks
+Route::resource('/tasks', TasksController::class);
+//visi routes su notes
+
+Route::resource('/notes', NoteController::class);

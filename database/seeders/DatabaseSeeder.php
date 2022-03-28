@@ -24,6 +24,12 @@ class DatabaseSeeder extends Seeder
         $this->call([
             SubjectSeeder::class
         ]);
+        $this->call([
+            TasksSeeder::class
+        ]);
+        $this->call([
+            NotesSeeder::class
+        ]);
         
     }
 }
