@@ -44,6 +44,18 @@ require __DIR__.'/auth.php';
 //    return view('DI.pages.tasks');
 // });
 
+//autorizacija
+//Route::get('/dashboard',function(){
+    // return view('dashboard');
+// })->middleware(['auth'])->name('dashboard');
+
+//Route::middleware(['AdminAccess'])->group(function (){
+    // Route::resource('/products',ProductController::class)->middleware(['AdminAccess']);
+// })
+Route::middleware(['AdminAccess'])->group(function () {
+    Route::resource('/products', ProductController::class)->middleware(['AdminAccess']);
+});
+
 //visi routes su tasks
 Route::resource('/tasks', TasksController::class);
 //visi routes su notes
