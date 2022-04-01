@@ -18,9 +18,7 @@ use App\Http\Controllers\NoteController;
 |
 */
 
-// Route::get('/', function () {
-//     return view('DI.pages.tasks');
-// });
+
 Route::get('/page1', function () {
     return view('page1.layouts.footer');
 });
@@ -58,6 +56,31 @@ Route::middleware(['AdminAccess'])->group(function () {
 
 //visi routes su tasks
 Route::resource('/tasks', TasksController::class);
-//visi routes su notes
 
-Route::resource('/notes', NoteController::class);
+// Route::redirect('/','lt');
+
+Route::resource('/notes', NoteController::class); 
+//route group kuri prides /en arba /lt prie routes
+// Route::group(['prefix'=>'{language}'],function (){
+    //visi routes su notes
+    // Route::resource('/notes', NoteController::class); 
+    //testinis
+//     Route::get('/',function (){
+//         return view('welcome');
+//     });
+
+// });
+
+// Route::get('/{locale?}', function ($locale = null) {
+//     if (isset($locale) && in_array($locale, config('app.available_locales'))) {
+//         app()->setLocale($locale);
+//     }
+    
+//     return view('welcome');
+// });
+Route::get('language/{locale}', function ($locale) {
+    app()->setLocale($locale);
+    session()->put('locale', $locale);
+    return redirect()->back();
+});
+Route::redirect('/','notes');

@@ -3,5 +3,18 @@
     "The :attribute must contain at least one number.": "The :attribute must contain at least one number.",
     "The :attribute must contain at least one symbol.": "The :attribute must contain at least one symbol.",
     "The :attribute must contain at least one uppercase and one lowercase letter.": "The :attribute must contain at least one uppercase and one lowercase letter.",
-    "The given :attribute has appeared in a data leak. Please choose a different :attribute.": "The given :attribute has appeared in a data leak. Please choose a different :attribute."
+    "The given :attribute has appeared in a data leak. Please choose a different :attribute.": "The given :attribute has appeared in a data leak. Please choose a different :attribute.",
+    "Back": "Back",
+    "Edit": "Edit",
+    "Delete": "Delete",
+    "Show": "Show",
+    "Laravel": "Laravel",
+    "Change language": "Change language",
+    "Title": "Title",
+    "Documentation": "Documentation",
+    "Notes title": "Notes CRUD page",
+    "Project name": "Laravel CRUD project",
+    "Notes": "Notes",
+    "Tasks": "Tasks",
+    "Create new note": "Create new note"
 }

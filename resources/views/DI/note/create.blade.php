@@ -7,7 +7,7 @@
             <h2>Add New Note</h2>
         </div>
         <div class="pull-right">
-            <a class="btn btn-primary" href="{{ route('notes.index') }}"> Back</a>
+            <a class="btn btn-primary" href="{{ route('notes.index') }}"> {{ __('Back') }}</a>
         </div>
     </div>
 </div>

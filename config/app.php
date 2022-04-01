@@ -97,7 +97,18 @@ return [
     */
 
     'fallback_locale' => 'en',
-
+    /*
+    |--------------------------------------------------------------------------
+    | Available locales
+    |--------------------------------------------------------------------------
+    |
+    | List all locales that your application works with
+    |
+    */
+    'available_locales' => [
+        'English' => 'en',
+        'Lithuanian' => 'lt',
+    ],
     /*
     |--------------------------------------------------------------------------
     | Faker Locale
