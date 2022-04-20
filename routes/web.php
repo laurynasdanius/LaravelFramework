@@ -7,6 +7,7 @@ use App\Http\Controllers\MailController;
 use App\Http\Controllers\TasksController;
 use App\Http\Controllers\NoteController;
 
+use App\Http\Controllers\HomeController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -36,20 +37,6 @@ Route::get('mail', [MailController::class, 'plain_email']);
 Route::get('mail_html', [MailController::class, 'html_email']); 
 require __DIR__.'/auth.php';
 
-//duomenu isvedimas
-// Route::get('/tasks', function()
-// {
-//    return view('DI.pages.tasks');
-// });
-
-//autorizacija
-//Route::get('/dashboard',function(){
-    // return view('dashboard');
-// })->middleware(['auth'])->name('dashboard');
-
-//Route::middleware(['AdminAccess'])->group(function (){
-    // Route::resource('/products',ProductController::class)->middleware(['AdminAccess']);
-// })
 Route::middleware(['AdminAccess'])->group(function () {
     Route::resource('/products', ProductController::class)->middleware(['AdminAccess']);
 });
@@ -57,30 +44,24 @@ Route::middleware(['AdminAccess'])->group(function () {
 //visi routes su tasks
 Route::resource('/tasks', TasksController::class);
 
-// Route::redirect('/','lt');
+Route::get('/',function (){
+    return view('welcome');
+    });
 
-Route::resource('/notes', NoteController::class); 
-//route group kuri prides /en arba /lt prie routes
-// Route::group(['prefix'=>'{language}'],function (){
-    //visi routes su notes
-    // Route::resource('/notes', NoteController::class); 
-    //testinis
-//     Route::get('/',function (){
-//         return view('welcome');
-//     });
 
-// });
+// Route::resource('/notes', NoteController::class); 
 
-// Route::get('/{locale?}', function ($locale = null) {
-//     if (isset($locale) && in_array($locale, config('app.available_locales'))) {
-//         app()->setLocale($locale);
-//     }
-    
-//     return view('welcome');
-// });
 Route::get('language/{locale}', function ($locale) {
     app()->setLocale($locale);
     session()->put('locale', $locale);
     return redirect()->back();
 });
-Route::redirect('/','notes');
+// Route::redirect('/','notes');
+
+Route::get('notes_list',  [NoteController::class, 'index'])->middleware(['auth'])->name('notes_list');
+//leidziama tik admin
+//Route::middleware(['AdminAccess'])->group(function () {
+    Route::resource('/notes', NoteController::class)->middleware(['AdminAccess']);
+//});
+
+
