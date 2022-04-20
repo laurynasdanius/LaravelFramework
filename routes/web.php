@@ -6,6 +6,10 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\MailController;
 use App\Http\Controllers\TasksController;
 use App\Http\Controllers\NoteController;
+use App\Http\Controllers\FileUpload;
+
+//darbas su failais
+use App\Http\Controllers\FileController;
 
 use App\Http\Controllers\HomeController;
 /*
@@ -64,4 +68,7 @@ Route::get('notes_list',  [NoteController::class, 'index'])->middleware(['auth']
     Route::resource('/notes', NoteController::class)->middleware(['AdminAccess']);
 //});
 
+//darbas su failais
+Route::get('/upload-file', [FileUpload::class, 'createForm']);
+Route::post('/upload-file', [FileUpload::class, 'fileUpload'])->name('fileUpload'); 
 
