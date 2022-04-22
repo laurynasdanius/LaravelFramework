@@ -7,7 +7,9 @@ class File extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'name',
-        'file_path'
+        'originalus_pavadinimas',
+        'koduotas_pavadinimas',
+        'rodomas_pavadinimas',
+        'path'
     ];
 }

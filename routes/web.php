@@ -9,9 +9,7 @@ use App\Http\Controllers\NoteController;
 use App\Http\Controllers\FileUpload;
 
 //darbas su failais
-use App\Http\Controllers\FileController;
-
-use App\Http\Controllers\HomeController;
+use App\Http\Controllers\FileUploadController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -72,3 +70,5 @@ Route::get('notes_list',  [NoteController::class, 'index'])->middleware(['auth']
 Route::get('/upload-file', [FileUpload::class, 'createForm']);
 Route::post('/upload-file', [FileUpload::class, 'fileUpload'])->name('fileUpload'); 
 
+
+Route::post('files', [FileUploadController::class, 'upload']);
