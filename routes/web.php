@@ -10,6 +10,8 @@ use App\Http\Controllers\FileUpload;
 
 //darbas su failais
 use App\Http\Controllers\FileUploadController;
+//darbas su failais
+use App\Http\Controllers\FileController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -71,4 +73,8 @@ Route::get('/upload-file', [FileUpload::class, 'createForm']);
 Route::post('/upload-file', [FileUpload::class, 'fileUpload'])->name('fileUpload'); 
 
 
-Route::post('files', [FileUploadController::class, 'upload']);
+// Route::post('files', [FileUploadController::class, 'upload']);
+
+//failai
+Route::get('file', [FileController::class, 'create']); 
+Route::post('file', [FileController::class, 'store']); 

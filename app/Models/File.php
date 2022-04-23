@@ -12,4 +12,8 @@ class File extends Model
         'rodomas_pavadinimas',
         'path'
     ];
+    public function setFilenamesAttribute($value)
+    {
+        $this->attributes['koduotas_pavadinimas'] = json_encode($value);
+    }
 }
