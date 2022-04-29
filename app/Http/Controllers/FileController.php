@@ -12,11 +12,11 @@ class FileController extends Controller
      *
      * @return void
      */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-    
+    // public function __construct()
+    // {
+    //     $this->middleware('auth');
+    // }
+
     public function create()
     {
         return view('create');
@@ -30,8 +30,6 @@ class FileController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-                // 'filenames' => 'required',
-                // 'filenames.*' => 'required'
                 'originalus_pavadinimas',
                 'koduotas_pavadinimas',
                 'rodomas_pavadinimas',
@@ -44,8 +42,7 @@ class FileController extends Controller
             {
                 //suformuojamas naujas atsitiktinis pavadinimas 
                     $name = time().rand(1,100).'.'.$file->extension();
-                //sufomuojamas originalus (pradinis) failo pavadinimas
-                     // $name=$file->getClientOriginalName();
+
                 //perkeliamas failas į norimą vietą
                 $file->move(public_path('files'), $name);  
 
@@ -64,17 +61,9 @@ class FileController extends Controller
                 $file->originalus_pavadinimas = $file_old;
                 
                 //rodomas pavadinimas
-                // $rodomasPav = File::get('rodomas_pavadinimas');
+
                 $file->rodomas_pavadinimas=$request->rodomas_pavadinimas;
-                
-                // $path = $file->store('public/files');
-                // $path = $request->file('file')->storeAs('uploads', $name, 'public');
-                // $path = $file->storeAs('uploads', $name, 'public');
-                // $file->path= $filePath;
-                // $file->path = '/storage/' . $path;
-                // $file->public_path('files/'.$name);
-                // $path = $request->file('file')->store('public/files');
-                
+
                 //kelias
                 $path = 'files/'.$name;
                 $file->path = $path;

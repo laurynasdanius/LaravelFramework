@@ -6,10 +6,9 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\MailController;
 use App\Http\Controllers\TasksController;
 use App\Http\Controllers\NoteController;
-use App\Http\Controllers\FileUpload;
+//parsisiuntimui reikalingas controller
+use App\Http\Controllers\DownloadController;
 
-//darbas su failais
-use App\Http\Controllers\FileUploadController;
 //darbas su failais
 use App\Http\Controllers\FileController;
 /*
@@ -68,13 +67,11 @@ Route::get('notes_list',  [NoteController::class, 'index'])->middleware(['auth']
     Route::resource('/notes', NoteController::class)->middleware(['AdminAccess']);
 //});
 
-//darbas su failais
-Route::get('/upload-file', [FileUpload::class, 'createForm']);
-Route::post('/upload-file', [FileUpload::class, 'fileUpload'])->name('fileUpload'); 
-
-
-// Route::post('files', [FileUploadController::class, 'upload']);
-
 //failai
 Route::get('file', [FileController::class, 'create']); 
 Route::post('file', [FileController::class, 'store']); 
+
+//parsisiuntimai
+Route::get('viewfiles', [DownloadController::class, 'index']);
+
+Route::get('get/{file_name}', [DownloadController::class, 'getfile'])->middleware(['AdminAccess']);

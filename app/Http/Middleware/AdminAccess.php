@@ -20,7 +20,7 @@ class AdminAccess
         if(Auth::check() && Auth()->user()->isAdmin == 1){
             return $next($request);
         }
-        return redirect('/');
+        return redirect('/login');
         // return redirect('/')->with('error','You are not authenticated');
     }
 }
