@@ -74,4 +74,4 @@ Route::post('file', [FileController::class, 'store']);
 //parsisiuntimai
 Route::get('viewfiles', [DownloadController::class, 'index']);
 
-Route::get('get/{file_name}', [DownloadController::class, 'getfile'])->middleware(['AdminAccess']);
+Route::get('get/{file_name}', [DownloadController::class, 'getfile'])->middleware(['auth']);

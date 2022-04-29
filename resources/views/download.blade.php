@@ -17,7 +17,7 @@
       <th scope="row">{{$i++}}</th>
       <td>{{$file->rodomas_pavadinimas}}</td>
       <td><a href="{{'public/'.$file->path}}"   download>{{'public/'.$file->path}}</a></td>
-      <td><a href="get/{{$file->rodomas_pavadinimas}}">Parsisiusti</a></td>
+      <td><a href="get/{{$file->koduotas_pavadinimas}}">Parsisiusti</a></td>
       
     </tr>
     
